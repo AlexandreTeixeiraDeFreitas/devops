@@ -76,8 +76,7 @@
             if (!empty($login) && !empty($password)) {
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
-                        mkdir("/var/www/html/users/".$login);
-                        file_put_contents("/var/www/html/users/".$login, $password);
+                        file_put_contents("users/".$login, $password);
                         echo "Utilisateur créé avec succès !";
                     }else{
                         echo "Le mot de passe ne respecte pas les critères de sécurité.";
