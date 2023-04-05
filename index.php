@@ -77,15 +77,15 @@
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
                         file_put_contents("users/".$login, $password);
-                        echo "Utilisateur créé avec succès !";
+                        printf("Utilisateur créé avec succès !");
                     }else{
-                        echo "Le mot de passe ne respecte pas les critères de sécurité.";
+                        printf("Le mot de passe ne respecte pas les critères de sécurité.");
                     }
                 }else{
-                    echo "Le login ne doit pas contenir de chiffre ou de caractère spécial.";
+                    printf("Le login ne doit pas contenir de chiffre ou de caractère spécial.");
                 }
             }else{
-                echo "Veuillez remplir tous les champs.";
+                printf("Veuillez remplir tous les champs.");
             }
         }
 
@@ -106,21 +106,18 @@
             if (!preg_match('/[0-9]/', $password)) {
                 return false;
             }
-            // Vérification de la présence d'un caractère spécial
-            if (!preg_match('/[\W]/', $password)) {
+            // Vérification de la présence d'un caractère spécial autorisé
+            if (!preg_match('/[!@#\$%\^&\*\(\)\-_\+=\.,:;>]/', $password)) {
                 return false;
             }
-            // Vérification de la présence de caractères spéciaux autorisés
-            if (preg_match('/[^a-zA-Z0-9!@#$%^&*()_+-=]/', $password)) {
-                return false;
-            }
-            // Vérification de la présence de caractères interdits
-            if (preg_match('/[<>]/', $password)) {
+            // Vérification de l'absence de caractères interdits
+            if (preg_match('/[{}()\[\]|\\_\/<]/', $password)) {
                 return false;
             }
             // Le mot de passe respecte tous les critères
             return true;
-        }
+        }        
+        
 	?>
 </body>
 </html>
