@@ -55,5 +55,12 @@ class CreateUserTest
         printf("Veuillez remplir tous les champs.", $result);
     }
 }
+function runTests() {
+    $test = new CreateUserTest();
+    $test->testCreateUserWithValidInput();
+    $test->testCreateUserWithInvalidLogin();
+    $test->testCreateUserWithInvalidPassword();
+    $test->testCreateUserWithMissingInput();
+}
 
-
+runTests();
