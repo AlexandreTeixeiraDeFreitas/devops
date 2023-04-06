@@ -9,7 +9,14 @@
             if (!empty($login) && !empty($password)) {
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
-                        file_put_contents("users/".$login, $password);
+                        if (!file_exists("users/".$login)) {
+                            file_put_contents("users/".$login, $password);
+                            printf("Utilisateur créé avec succès !");
+                            return true;
+                        } else {
+                            printf("Un utilisateur avec ce login existe déjà.");
+                            return false;
+                        }
                         printf("Utilisateur créé avec succès !");
                         return true;
                     }else{
