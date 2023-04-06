@@ -1,17 +1,11 @@
 <?php
-include 'fonction.php';
+    include 'fonction.php';
 
-// Données d'entrée : champs vides
-$login = "";
-$password = "";
+    $r1 = create_user("", "p@ssword1");
+    $r2 = create_user("username", "");
 
-// Appel de la fonction à tester
-$result = create_user($login, $password);
-
-// Vérification du résultat
-if ($result === false) {
-    printf("  Test réussi : champs vides\n");
-} else {
-    printf("  Test échoué : champs vides\n");
-}
-?>
+    if (!$r1 && !$r2) {
+        printf("true");
+    } else {
+        printf("false");
+    }

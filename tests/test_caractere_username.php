@@ -1,44 +1,12 @@
 <?php
-include 'fonction.php';
+    include 'fonction.php';
 
-// Données d'entrée : username contient un chiffre
-$login = "john123";
-$password = "P@ssw0rd123";
+    $r1 = create_user("username", "P@ssw0rd!");
+    $r2 = create_user("usern@me", "P@ssw0rd!");
+    $r3 = create_user("user_name", "P@ssw0rd!");
 
-// Appel de la fonction à tester
-$result = create_user($login, $password);
-
-// Vérification du résultat
-if ($result === false) {
-    printf("  Test réussi : username contient un chiffre\n");
-} else {
-    printf("  Test échoué : username contient un chiffre\n");
-}
-
-// Données d'entrée : username contient un caractère spécial
-$login = "johndoe@";
-$password = "P@ssw0rd123";
-
-// Appel de la fonction à tester
-$result = create_user($login, $password);
-
-// Vérification du résultat
-if ($result === false) {
-    printf("  Test réussi : username contient un caractère spécial\n");
-} else {
-    printf("  Test échoué : username contient un caractère spécial\n");
-}
-
-// Données d'entrée : username contient uniquement des lettres
-$login = "johndoe";
-$password = "P@ssw0rd123";
-
-// Appel de la fonction à tester
-$result = create_user($login, $password);
-
-// Vérification du résultat
-if ($result === true) {
-    printf("  Test réussi : username contient uniquement des lettres\n");
-} else {
-    printf("  Test échoué : username contient uniquement des lettres\n");
-}
+    if ($r1 && !$r2 && !$r3) {
+        printf("true");
+    } else {
+        printf("false");
+    }
