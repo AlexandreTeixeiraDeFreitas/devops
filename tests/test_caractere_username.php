@@ -5,7 +5,7 @@
     $r3 = create_user("user_name", "P@ssw0rd!");
     $r4 = create_user("user123", "P@ssw0rd!");
 
-    if ($r1 < 2 && $r2 == 3 && $r3 == 3 && $r4 == 3) {
+    if ($r1 < 2 && $r2 == 3 && $r3 == 3 && $r4 < 2) {
         printf("true");
     } else {
         printf("false");

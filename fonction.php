@@ -1,19 +1,15 @@
 <?php
-		if (isset($_POST['submit'])) {
-			$login = $_POST['login'];
-			$password = $_POST['password'];
-			create_user($login, $password);
-		}
         function create_user($login, $password)
         {
             $filePath = __DIR__ . "/users/" . $login . ".txt";
             $filePath = str_replace("\\", "/", $filePath);
 
             if (!empty($login) && !empty($password)) {
-                if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
+                if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login)) {
                     if (verifyPassword($password)) {
                         if (!file_exists($filePath)) {
-                            file_put_contents($filePath, $password);
+                            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                            file_put_contents($filePath, $hashed_password);
                             // printf("Utilisateur créé avec succès !");
                             return 0;
                         } else {
@@ -42,7 +38,7 @@
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (file_exists($filePath)) {
                         $stored_password = file_get_contents($filePath);
-                        if ($stored_password === $password) {
+                        if (password_verify($password, $stored_password)) {
                             // printf("Utilisateur connecté avec succès !");
                             return 0; // L'utilisateur existe et le mot de passe donné est valide
                         } else {
