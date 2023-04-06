@@ -57,44 +57,16 @@
     </style>
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form action="" method="POST">
-        <label for="login">Login:</label>
-        <input type="text" name="login" id="login" required>
-        <br>
-        <label for="password">Mot de passe:</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-        <input type="submit" name="submit" value="Se connecter">
-    </form>
+	<h1>Créer un utilisateur</h1>
+	<form method="post" action="">
+		<label for="login">Login :</label>
+		<input type="text" name="login" id="login" required><br><br>
+		<label for="password">Mot de passe :</label>
+		<input type="password" name="password" id="password" required><br><br>
+		<input type="submit" name="submit" value="Créer l'utilisateur">
+	</form>
     <?php
     include 'fonction.php';
-
-    if (isset($_POST['submit'])) {
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $result = connect_user($login, $password);
-    
-        switch ($result) {
-            case 0:
-                echo "Utilisateur connecté avec succès !";
-                break;
-            case 1:
-                echo "Mot de passe invalide.";
-                break;
-            case 2:
-                echo "L'utilisateur n'existe pas.";
-                break;
-            case 3:
-                echo "Tentative d'injection SQL.";
-                break;
-            case 4:
-                echo "Veuillez remplir tous les champs.";
-                break;
-            default:
-                echo "Erreur inconnue.";
-        }
-    }
     ?>
 </body>
 </html>
