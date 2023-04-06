@@ -35,7 +35,7 @@
             $filePath = str_replace("\\", "/", $filePath);
         
             if (!empty($login) && !empty($password)) {
-                if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
+                if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login)) {
                     if (file_exists($filePath)) {
                         $stored_password = file_get_contents($filePath);
                         if (password_verify($password, $stored_password)) {
