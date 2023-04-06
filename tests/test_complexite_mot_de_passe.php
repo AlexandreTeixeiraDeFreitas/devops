@@ -1,5 +1,5 @@
 <?php
-    include 'fonction.php';
+    include '../fonction.php';
 
     $r1 = create_user("username", "password");
     $r2 = create_user("username", "P@ssw0rd!");
