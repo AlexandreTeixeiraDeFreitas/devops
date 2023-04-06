@@ -9,28 +9,25 @@
             if (!empty($login) && !empty($password)) {
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
-                        if (!file_exists("./users/".$login.".txt")) {
-                            file_put_contents("./users/".$login.".txt", $password);
+                        if (!file_exists("../users/".$login.".txt")) {
+                            file_put_contents("../users/".$login.".txt", $password);
                             printf("Utilisateur créé avec succès !");
-                            return true; 
-                            file_put_contents("./users/".$login.".txt", $password);
-                            printf("Utilisateur créé avec succès !");
-
+                            return 0;
                         } else {
                             printf("Un utilisateur avec ce login existe déjà.");
-                            return false;
+                            return 1;
                         }
                     }else{
-                        // printf("Le mot de passe ne respecte pas les critères de sécurité.");
-                        return false;
+                        printf("Le mot de passe ne respecte pas les critères de sécurité.");
+                        return 2;
                     }
                 }else{
-                    // printf("Le login ne doit pas contenir de caractère spécial.");
-                    return false;
+                    printf("Le login ne doit pas contenir de caractère spécial.");
+                    return 3;
                 }
             }else{
-                // printf("Veuillez remplir tous les champs.");
-                return false;
+                printf("Veuillez remplir tous les champs.");
+                return 4;
             }
         }
 

@@ -12,22 +12,22 @@
                         if (!file_exists("../users/".$login.".txt")) {
                             file_put_contents("../users/".$login.".txt", $password);
                             // printf("Utilisateur créé avec succès !");
-                            return true;
+                            return 0;
                         } else {
                             // printf("Un utilisateur avec ce login existe déjà.");
-                            return true;
+                            return 1;
                         }
                     }else{
                         // printf("Le mot de passe ne respecte pas les critères de sécurité.");
-                        return false;
+                        return 2;
                     }
                 }else{
                     // printf("Le login ne doit pas contenir de caractère spécial.");
-                    return false;
+                    return 3;
                 }
             }else{
                 // printf("Veuillez remplir tous les champs.");
-                return false;
+                return 4;
             }
         }
 
