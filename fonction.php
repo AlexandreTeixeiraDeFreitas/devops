@@ -6,11 +6,12 @@
 		}
         function create_user($login, $password)
         {
+
             if (!empty($login) && !empty($password)) {
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
-                        if (!file_exists(__DIR__.$login.".txt")) {
-                            file_put_contents("../users/".$login.".txt", $password);
+                        if (!file_exists(__DIR__."/users/".$login.".txt")) {
+                            file_put_contents(__DIR__.$login.".txt", $password);
                             // printf("Utilisateur créé avec succès !");
                             return 0;
                         } else {
