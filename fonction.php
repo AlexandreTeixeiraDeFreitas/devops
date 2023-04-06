@@ -13,22 +13,22 @@
                     if (verifyPassword($password)) {
                         if (!file_exists($filePath)) {
                             file_put_contents($filePath, $password);
-                            printf("Utilisateur créé avec succès !");
+                            // printf("Utilisateur créé avec succès !");
                             return 0;
                         } else {
-                            printf("Un utilisateur avec ce login existe déjà.");
+                            // printf("Un utilisateur avec ce login existe déjà.");
                             return 1;
                         }
                     }else{
-                        printf("Le mot de passe ne respecte pas les critères de sécurité.");
+                        // printf("Le mot de passe ne respecte pas les critères de sécurité.");
                         return 2;
                     }
                 }else{
-                    printf("Le login ne doit pas contenir de caractère spécial.");
+                    // printf("Le login ne doit pas contenir de caractère spécial.");
                     return 3;
                 }
             }else{
-                printf("Veuillez remplir tous les champs.");
+                // printf("Veuillez remplir tous les champs.");
                 return 4;
             }
         }
