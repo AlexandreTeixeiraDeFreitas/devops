@@ -8,6 +8,7 @@
         {
             $filePath = __DIR__ . "/users/" . $login . ".txt";
             $filePath = str_replace("\\", "/", $filePath);
+
             if (!empty($login) && !empty($password)) {
                 if (ctype_alpha($login) && preg_match('/^[a-zA-Z]+$/', $login)) {
                     if (verifyPassword($password)) {
@@ -82,7 +83,9 @@
                 return false;
             }
             // Vérification de la présence d'un caractère spécial autorisé
-            if (!preg_match('/[!@#\$%\^&\*\(\)\-_\+=\.,:;>]/', $password)) {
+            $allowed_special_chars = '!@#$%^&*()-_=+.,:;>';
+            $pattern = '/[' . preg_quote($allowed_special_chars, '/') . ']/';
+            if (!preg_match($pattern, $password)) {
                 return false;
             }
             // Vérification de l'absence de caractères interdits

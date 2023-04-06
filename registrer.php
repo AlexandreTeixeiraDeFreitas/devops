@@ -67,6 +67,11 @@
 	</form>
     <?php
     include 'fonction.php';
+    if (isset($_POST['submit'])) {
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $result = create_user($login, $password);
+    }
     ?>
 </body>
 </html>
