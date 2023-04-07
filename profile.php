@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
     <style>
-        button {
-            margin: 5px;
+        input[type="submit"]:hover, button[type="submit"]:hover {
+            background-color: #3e8e41;
         }
     </style>
 </head>
