@@ -23,9 +23,9 @@
     $r6 = update_user("", "", "");
 
     $r7 = update_user("testuser", "N3wP@ssw0rd!", "P@sswordaazertyuiopqsdfazgherjtykulimopk");
-    // printf("r1: ".$r1." r2: ".$r2." r3: ".$r3." r4: ".$r4." r5: ".$r5." r6: ".$r6);
+    // printf("r1: ".$r1." r2: ".$r2." r3: ".$r3." r4: ".$r4." r5: ".$r5." r6: ".$r6." r7: ".$r7);
     // Vérification des résultats
-    if ($r1 == 0 && $r2 == 4 && $r3 == 4 && $r4 == 2 && $r5 == 1 && $r6 == 5 && $r6 == 2) {
+    if ($r1 == 0 && $r2 == 4 && $r3 == 4 && $r4 == 2 && $r5 == 1 && $r6 == 5 && $r7 == 1) {
         printf("true");
     } else {
         printf("false");
