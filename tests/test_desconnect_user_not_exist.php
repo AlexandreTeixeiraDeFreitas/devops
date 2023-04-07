@@ -1,6 +1,6 @@
 <?php
 include '../fonction.php';
-
+session_start();
 create_user("username6", "P@ssword1");
 connect_user('username6', 'P@ssword1');
 $r1 = disconnect_user('nonexistentuser');

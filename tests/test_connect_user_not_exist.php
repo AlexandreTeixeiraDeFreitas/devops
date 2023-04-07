@@ -1,6 +1,6 @@
 <?php
 include '../fonction.php';
-
+session_start();
 create_user("username2", "P@ssword1");
 $r1 = connect_user('username4', 'P@ssword1');
 $r2 = connect_user('username5', 'P@ssword1');

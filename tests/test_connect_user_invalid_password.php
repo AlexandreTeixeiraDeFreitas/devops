@@ -1,6 +1,6 @@
 <?php
 include '../fonction.php';
-
+session_start();
 create_user("username1", "P@ssword1");
 $r1 = connect_user('username1', 'wrong_password');
 $r2 = connect_user('username1', 'P@sswor');

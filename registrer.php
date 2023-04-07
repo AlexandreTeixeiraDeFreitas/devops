@@ -65,6 +65,7 @@
 		<input type="password" name="password" id="password" required><br><br>
 		<input type="submit" name="submit" value="Créer l'utilisateur">
 	</form>
+    <p><a href="index.php">Se connecté</a></p>
     <?php
     include 'fonction.php';
     if (isset($_POST['submit'])) {

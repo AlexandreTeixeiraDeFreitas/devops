@@ -2,7 +2,7 @@
 include '../fonction.php';
 
 create_user("username", "p@ssword1");
-
+session_start();
 $r1 = connect_user('username', 'p@ssword1');
 $r2 = connect_user('username', 'wrong_password');
 $r3 = connect_user('non_existent_user', 'p@ssword1');
