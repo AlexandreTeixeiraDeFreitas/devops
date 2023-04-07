@@ -67,8 +67,7 @@
         <br>
         <input type="submit" name="submit" value="Se connecter">
     </form>
-    <p><a href="register.php
-    ">S'inscrire</a></p>
+    <p><a href="registrer.php">S'inscrire</a></p>
     <?php
     include 'fonction.php';
     // session_start();
