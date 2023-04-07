@@ -21,7 +21,7 @@
 
     // Test 6: Les champs sont vides
     $r6 = update_user("", "", "");
-    printf("r1: ".$r1." r2: ".$r2." r3: ".$r3." r4: ".$r4." r5: ".$r5." r6: ".$r6);
+    // printf("r1: ".$r1." r2: ".$r2." r3: ".$r3." r4: ".$r4." r5: ".$r5." r6: ".$r6);
     // Vérification des résultats
     if ($r1 == 0 && $r2 == 4 && $r3 == 4 && $r4 == 2 && $r5 == 1 && $r6 == 5) {
         printf("true");
