@@ -1,0 +1,17 @@
+#!/bin/bash
+# Vérifie les ports disponibles à partir de 8000
+for PORT in $(seq 8000 65535); do
+  echo "Vérification du port $PORT"
+  if ! ss -lntop4 | tail -n+2 | sed 's|\t| |g' | tr -s " " | cut -d" " -f4 | cut -d":" -f2 | grep -w "$PORT" >/dev/null; then
+    echo "Le port $PORT est disponible"
+    break
+  fi
+done
+
+# next_port=$(next_port_dispo)
+docker run -d --name pre-prod -v /var/www/html -p "$PORT:80" php:apache
+git clone https://github.com/AlexandreTeixeiraDeFreitas/devops
+rm -rf /var/www/html/tests
+docker kill prod
+docker rm prod
+docker rename pre-prod prod

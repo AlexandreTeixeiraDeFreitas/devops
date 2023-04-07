@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Vérification de la présence du conteneur "rollback"
+docker ps -a | grep "rollback" > /dev/null
+if [ $? -eq 0 ]; then
+    docker kill "prod"
+    docker rm "prod"
+    docker rename "rollback" "prod"
+    docker start "prod"
+else
+    echo "Le conteneur rollback n'existe pas."
+fi

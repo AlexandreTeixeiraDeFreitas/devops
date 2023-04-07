@@ -1,0 +1,81 @@
+#!/bin/bash
+#### PREPARATION DE L'ENVIRONNEMENT ####
+
+DOSSIER_TEMP=/workspace/workspace/Déploiement_Continu/web_containeur_test
+REPO_URL="https://github.com/AlexandreTeixeiraDeFreitas/devops"
+CONTENEUR_TEST="test"
+CONTENEUR_PROD="prod"
+CONTENEUR_ROLLBACK="rollback"
+
+# Vérification de la présence du conteneur test
+docker ps -a | grep -w "$CONTENEUR_TEST" >/dev/null
+if [ $? -eq 0 ]
+then
+    echo "Le conteneur test existe deja"
+    docker kill $CONTENEUR_TEST
+    docker rm $CONTENEUR_TEST
+fi
+
+# Clone du repo
+if [ -d web_containeur_test ]
+then
+    rm -rf web_containeur_test
+fi
+mkdir web_containeur_test
+# mkdir web_containeur_rollback
+# mkdir web_containeur_prod
+git clone $REPO_URL web_containeur_test
+docker kill $CONTENEUR_PROD
+# Vérifie les ports disponibles à partir de 8000
+for PORT in $(seq 8000 65535); do
+  echo "Vérification du port $PORT"
+  if ! ss -lntop4 | tail -n+2 | sed 's|\t| |g' | tr -s " " | cut -d" " -f4 | cut -d":" -f2 | grep -w "$PORT" >/dev/null; then
+    echo "Le port $PORT est disponible"
+    break
+  fi
+done
+
+docker run -d --name="$CONTENEUR_TEST" -v "/workspace/workspace/Déploiement_Continu/web_containeur_test:/var/www/html" -p $PORT:80 php:apache
+docker exec $CONTENEUR_TEST chown www-data /var/www/html/users
+
+## Etape 3 - Lancement des tests
+if [ -d $DOSSIER_TEMP/tests ]
+then
+    tests_passed=true
+    for ELEM_TEST in $(ls $DOSSIER_TEMP/tests)
+    do
+        RET=$(curl localhost:$PORT/tests/$ELEM_TEST 2>/dev/null)
+        echo "$ELEM_TEST => $RET"
+        if [ "$RET" != "true" ]
+        then
+            tests_passed=false
+            break
+        fi
+    done
+
+    if [ "$tests_passed" = "true" ]
+    then
+        # Arrêter et renommer le conteneur prod en rollback
+        
+        docker rm $CONTENEUR_ROLLBACK
+        docker rename $CONTENEUR_PROD $CONTENEUR_ROLLBACK
+        
+        # Renommer le conteneur test en prod
+        docker rename $CONTENEUR_TEST $CONTENEUR_PROD
+        docker start $CONTENEUR_PROD
+        
+        # Supprimer le dossier de tests unitaires
+        docker exec $CONTENEUR_PROD rm -rf /var/www/html/tests
+    else
+    	docker start $CONTENEUR_PROD
+        # Arrêter et supprimer le conteneur test
+        docker kill $CONTENEUR_TEST
+        docker rm $CONTENEUR_TEST
+        
+        echo "Au moins un test a échoué, le job est en erreur."
+        exit 1
+    fi
+else
+    echo "Le dossier tests n'existe pas"
+    exit 1
+fi
