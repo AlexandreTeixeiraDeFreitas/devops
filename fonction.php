@@ -5,7 +5,7 @@
         $filePath = str_replace("\\", "/", $filePath);
 
         if (!empty($login) && !empty($password)) {
-            if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login)) {
+            if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login) && strlen($login) < 25) {
                 if (verifyPassword($password)) {
                     if (!file_exists($filePath)) {                                  
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -21,7 +21,7 @@
                     return 2;
                 }
             }else{
-                // printf("Le login ne doit pas contenir de caractère spécial.");
+                // printf("Le login ne doit pas contenir de caractère spécial ou est trop long.");
                 return 3;
             }
         }else{
@@ -35,7 +35,7 @@
         $filePath = str_replace("\\", "/", $filePath);
     
         if (!empty($login) && !empty($password)) {
-            if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login)) {
+            if (ctype_alnum($login) && preg_match('/^[a-zA-Z0-9]+$/', $login) && strlen($login) < 25) {
                 if (file_exists($filePath)) {
                     $stored_password = file_get_contents($filePath);
                     if (password_verify($password, $stored_password)) {
@@ -74,7 +74,7 @@
         $filePath = str_replace("\\", "/", $filePath);
     
         if (!empty($username) && !empty($old_password) && !empty($new_password)) {
-            if (ctype_alnum($username) && preg_match('/^[a-zA-Z0-9]+$/', $username)) {
+            if (ctype_alnum($username) && preg_match('/^[a-zA-Z0-9]+$/', $username) && strlen($username) < 25) {
                 if (file_exists($filePath)) {
                     $stored_password = file_get_contents($filePath);
                     if (password_verify($old_password, $stored_password)) {
@@ -110,7 +110,7 @@
         $filePath = str_replace("\\", "/", $filePath);
     
         if (!empty($username)) {
-            if (ctype_alnum($username) && preg_match('/^[a-zA-Z0-9]+$/', $username)) {
+            if (ctype_alnum($username) && preg_match('/^[a-zA-Z0-9]+$/', $username) && strlen($username) < 25) {
                 if (file_exists($filePath)) {
                     unlink($filePath);
                     // printf("Utilisateur supprimé avec succès !");
