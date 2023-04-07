@@ -67,10 +67,11 @@
         <br>
         <input type="submit" name="submit" value="Se connecter">
     </form>
-    <p><a href="register.html">S'inscrire</a></p>
+    <p><a href="register.php
+    ">S'inscrire</a></p>
     <?php
     include 'fonction.php';
-    // session_start();
+    session_start();
     if (isset($_POST['submit'])) {
         $login = $_POST['login'];
         $password = $_POST['password'];
