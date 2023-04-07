@@ -30,6 +30,8 @@
             delete_user($_SESSION["CONNECTED"]);
             printf('<script>window.location.href = "index.php";</script>');
         }
+    }else{
+        printf('<script>window.location.href = "index.php";</script>');
     }
     ?>
     <form method="post">
