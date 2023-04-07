@@ -4,7 +4,7 @@ include '../fonction.php';
 create_user("username1", "P@ssword1");
 $r1 = connect_user('username1', 'wrong_password');
 $r2 = connect_user('username1', 'P@sswor');
-$r2 = connect_user('username1', 'P@sswor');
+$r3 = connect_user('username1', 'P@sswor');
 
 printf("r1: ".$r1." r2: ".$r2." r3: ".$r3);
 
