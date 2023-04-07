@@ -81,25 +81,25 @@
     
         switch ($result) {
             case 0:
-                echo "Utilisateur connecté avec succès !";
+                printf("Utilisateur connecté avec succès !");
                 printf($_SESSION["CONNECTED"]);
                 printf('<script>window.location.href = "profile.php";</script>');
                 // header('Location: profile.php');
                 break;
             case 1:
-                echo "Mot de passe invalide.";
+                printf("Mot de passe invalide.");
                 break;
             case 2:
-                echo "L'utilisateur n'existe pas.";
+                printf("L'utilisateur n'existe pas.");
                 break;
             case 3:
-                echo "Tentative d'injection SQL.";
+                printf("Tentative d'injection SQL.");
                 break;
             case 4:
-                echo "Veuillez remplir tous les champs.";
+                printf("Veuillez remplir tous les champs.");
                 break;
             default:
-                echo "Erreur inconnue.";
+                printf("Erreur inconnue.");
         }
     }
     ?>

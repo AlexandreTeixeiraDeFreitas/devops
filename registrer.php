@@ -72,6 +72,27 @@
         $login = $_POST['login'];
         $password = $_POST['password'];
         $result = create_user($login, $password);
+
+        switch ($result) {
+            case 0:
+                printf("Utilisateur créer avec succès !");
+                // header('Location: profile.php');
+                break;
+            case 1:
+                printf("Un utilisateur avec ce login existe déjà.");
+                break;
+            case 2:
+                printf("Le mot de passe ne respecte pas les critères de sécurité.");
+                break;
+            case 3:
+                printf("Le login ne doit pas contenir de caractère spécial.");
+                break;
+            case 4:
+                printf("Veuillez remplir tous les champs.");
+                break;
+            default:
+                printf("Erreur inconnue.");
+        }
     }
     ?>
 </body>
