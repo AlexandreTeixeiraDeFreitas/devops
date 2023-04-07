@@ -1,5 +1,4 @@
 <?php
-    session_start();
     function create_user($login, $password)
     {
         $filePath = __DIR__ . "/users/" . $login . ".txt";

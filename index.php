@@ -69,8 +69,8 @@
     </form>
     <p><a href="registrer.php">S'inscrire</a></p>
     <?php
+    session_start();
     include 'fonction.php';
-    // session_start();
     if (isset($_POST['submit'])) {
         $login = $_POST['login'];
         $password = $_POST['password'];

@@ -13,6 +13,7 @@
 <body>
     <h1>Profil</h1>
     <?php
+    session_start();
     include 'fonction.php';
     if (isset($_SESSION["CONNECTED"])) {
         printf("Bienvenue, " . $_SESSION["CONNECTED"] . "!");
