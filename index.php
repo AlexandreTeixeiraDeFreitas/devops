@@ -71,7 +71,7 @@
     ">S'inscrire</a></p>
     <?php
     include 'fonction.php';
-    session_start();
+    // session_start();
     if (isset($_POST['submit'])) {
         $login = $_POST['login'];
         $password = $_POST['password'];
@@ -81,7 +81,8 @@
             case 0:
                 echo "Utilisateur connecté avec succès !";
                 printf($_SESSION["CONNECTED"]);
-                header('Location: profile.php');
+                printf('<script>window.location.href = "profile.php";</script>');
+                // header('Location: profile.php');
                 break;
             case 1:
                 echo "Mot de passe invalide.";
