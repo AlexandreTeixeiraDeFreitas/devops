@@ -23,12 +23,12 @@
 
         if (isset($_POST['logout'])) {
             disconnect_user($_SESSION["CONNECTED"]);
-            header('Location: index.php');
+            printf('<script>window.location.href = "index.php";</script>');
         }
 
         if (isset($_POST['delete_user'])) {
             delete_user($_SESSION["CONNECTED"]);
-            header('Location: index.php');
+            printf('<script>window.location.href = "index.php";</script>');
         }
     }
     ?>
