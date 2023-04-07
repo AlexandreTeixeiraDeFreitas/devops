@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +72,7 @@
     </form>
     <p><a href="registrer.php">S'inscrire</a></p>
     <?php
-    session_start();
+    // session_start();
     include 'fonction.php';
     if (isset($_POST['submit'])) {
         $login = $_POST['login'];
