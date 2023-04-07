@@ -135,6 +135,9 @@
         if (strlen($password) < 8) {
             return false;
         }
+        if (strlen($password) > 25) {
+            return false;
+        }
         // Vérification de la présence d'une lettre majuscule
         if (!preg_match('/[A-Z]/', $password)) {
             return false;
